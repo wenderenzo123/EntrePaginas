@@ -1,15 +1,15 @@
 package com.entrepaginas.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
+import com.entrepaginas.utils.ArrayList;
+
 public class Library {
-    private List<Book> books;
+    private ArrayList<Book> books;
     private Map<String, Book> bookMap;
     private Queue<Book> waitingList;
     private Stack<Book> recentBooks;
@@ -46,6 +46,10 @@ public class Library {
         recentBooks.push(book);
     }
 
+    public ArrayList<Book> returnBooks() {
+        return books;
+    }
+
     public Book getRecentBook() {
         if (recentBooks.empty()) {
             return null;
@@ -56,6 +60,39 @@ public class Library {
     public void printBooks() {
         for (Book book : books) {
             System.out.println(book);
+        }
+    }
+
+    public void removeBook(String isbn) {
+        Book book = bookMap.get(isbn);
+        books.remove(book);
+        bookMap.remove(isbn);
+    }
+
+    public void updateBook(String isbn, String newBook) {
+        Book book = bookMap.get(isbn);
+        book.setTitle(newBook);
+    }
+
+    public void printAvailableBooks() {
+        for (Book book : books) {
+            if (book.isAvailable()) {
+                System.out.println(book);
+            }
+        }
+    }
+
+    public void printWaitingList() {
+        for (Book book : waitingList) {
+            System.out.println(book);
+        }
+    }
+
+    public void printUnvailableBooks() {
+        for (Book book : books) {
+            if (!book.isAvailable()) {
+                System.out.println(book);
+            }
         }
     }
 }
