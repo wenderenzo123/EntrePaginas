@@ -1,0 +1,19 @@
+.tab-header-background {
+    -fx-background-color: #58749F;
+}
+
+.tab{
+    -fx-background-color: #0D477E;    
+    -fx-padding: 0 5;
+}
+
+#tabTelaPrincipal .tab:selected .tab-label {
+    -fx-background-color: #fff; /* cor da aba selecionada */
+    -fx-text-fill: #0D477E; /* cor do texto da aba selecionada */
+    -fx-padding: 4px 6px;
+}
+
+#tabTelaPrincipal .tab:selected .tab-content {
+    -fx-background-color: #f8f9fa; /* cor do conteúdo da aba selecionada */
+   
+}
