@@ -23,7 +23,7 @@ public class Telas extends Application {
 	}
 
     public static void telaInicial() throws Exception {
-		Parent root = FXMLLoader.load(Telas.class.getResource("primary.fxml"));
+		Parent root = FXMLLoader.load(Telas.class.getResource("screenBooks2.fxml"));
 		
 		Scene cena = new Scene(root);
 		
