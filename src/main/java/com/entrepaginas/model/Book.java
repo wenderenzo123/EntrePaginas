@@ -13,6 +13,13 @@ public class Book {
         this.available = true;
     }
 
+    public Book() {
+        this.title = "";
+        this.author = "";
+        this.isbn = "";
+        this.available = true;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -32,9 +39,19 @@ public class Book {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public void setAuthor(String author) {
+        this.author= author;
+    }
 
     @Override
     public String toString() {
         return title + " by " + author + " (ISBN: " + isbn + ")";
+    }
+
+    public void setIsbn(String string) {
+        this.isbn = string;
     }
 }
