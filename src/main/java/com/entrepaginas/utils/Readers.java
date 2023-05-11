@@ -37,4 +37,13 @@ public class Readers {
         return users;
     }
 
+    
+    public static void writeFileBook(String path, Library library) {
+        File.Write(path, library.returnBooks(),1);
+    }
+
+    public static void writeFileClient(String path, Users users) {
+        // File.Write(path, users.returnClients(),2);
+    }
+
 }

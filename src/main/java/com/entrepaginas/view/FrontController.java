@@ -9,6 +9,7 @@ import com.entrepaginas.model.Client;
 import com.entrepaginas.model.Library;
 import com.entrepaginas.model.Users;
 import com.entrepaginas.utils.Readers;
+import com.entrepaginas.utils.Readers.*;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -72,6 +73,8 @@ public class FrontController implements Initializable {
     
     public void deleteBook(ActionEvent event){
         library.removeBook(livroSelecionado.getIsbn());
+        Readers.writeFileBook("livros.csv", library);
+        listBookInit();
     }
 
     public void addBook(){
@@ -83,6 +86,7 @@ public class FrontController implements Initializable {
         newBook.setAvailable(true);
 
         library.addBook(newBook);
+        Readers.writeFileBook("livros.csv", library);
         listBookInit();
     }
     

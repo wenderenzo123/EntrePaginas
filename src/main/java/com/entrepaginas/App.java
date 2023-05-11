@@ -4,19 +4,19 @@ import com.entrepaginas.model.Book;
 import com.entrepaginas.model.Library;
 import com.entrepaginas.model.Users;
 import com.entrepaginas.utils.File;
-import com.entrepaginas.utils.Readers;
+import com.entrepaginas.utils.Readers.*;
 
 public class App {
 
     public static void main(String[] args) {
 
-        String ArqBooks = "Livros.csv";
+        String ArqBooks = "livros.csv";
         String ArqClient = "Clientes.csv";
 
         Library library = new Library();
         Users users = new Users();
-        users = Readers.readFileUsers(ArqClient);
-        library = Readers.readFileLibrary(ArqBooks);
+        // users = Readers.readFileUsers(ArqClient);
+        // library = Readers.readFileLibrary(ArqBooks);
         System.out.println("Livros cadastrados: ");
         while (true) {
             menu();
@@ -66,9 +66,9 @@ public class App {
                 case 0:
                     System.exit(0);
                     // Atualizando a base de Livros
-                    writeFileBook(ArqBooks, library);
+                    // writeFileBook(ArqBooks, library);
                     // Atualizando a base de Clientes
-                    writeFileClient(ArqClient, users);
+                    // writeFileClient(ArqClient, users);
                     break;
                 default:
                     System.out.println("Opção inválida!");
@@ -87,15 +87,5 @@ public class App {
         System.out.println("7 - Livros disponíveis");  
         System.out.println("0 - Sair");
         System.out.println("Digite a opção desejada: ");
-    }
-
-    
-
-    public static void writeFileBook(String path, Library library) {
-        // File.Write(path, library.returnBooks(),1);
-    }
-
-    public static void writeFileClient(String path, Users users) {
-        File.Write(path, users.returnClients(),2);
     }
 }
