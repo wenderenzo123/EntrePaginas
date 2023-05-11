@@ -1,12 +1,12 @@
 package com.entrepaginas.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.entrepaginas.utils.ArrayList;
 
 public class Library {
     private ArrayList<Book> books;
@@ -15,7 +15,7 @@ public class Library {
     private Stack<Book> recentBooks;
 
     public Library() {
-        this.books = new ArrayList<>();
+        this.books = new ArrayList<Book>();
         this.bookMap = new HashMap<>();
         this.waitingList = new LinkedList<>();
         this.recentBooks = new Stack<>();

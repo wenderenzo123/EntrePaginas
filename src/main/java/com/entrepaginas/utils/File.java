@@ -1,4 +1,4 @@
-package com.entrepaginas;
+package com.entrepaginas.utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 
 import com.entrepaginas.model.Book;
 import com.entrepaginas.model.Client;
-import com.entrepaginas.utils.ArrayList;
 
 public class File {
     public static String Read(String Caminho){
