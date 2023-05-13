@@ -1,8 +1,8 @@
 package com.entrepaginas.model;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
-import com.entrepaginas.utils.ArrayList;
 
 
 public class Users {
@@ -31,12 +31,16 @@ public class Users {
         return this.historico.pop();
     }
 
-    public void borrowBook(String id, String isbn3) {
+    public void historicoGeral() {
+        for (String string : historico) {
+            System.out.println(string);
+        }
+    }
+
+    public void borrowBook(String id, String isbn3 , Library library) {
         Client client = findClient(id);
-        Library library = new Library();
         Book book = library.findBook(isbn3);
-        if (book.isAvailable()) {
-            book.setAvailable(false);
+        if (book.getQtd()>0) {
             client.setBook(book.getIsbn());
             historico.push("O livro " + book.getTitle() + " foi emprestado para " + client.getUsername());
         } else {
@@ -46,6 +50,12 @@ public class Users {
 
     public ArrayList returnClients() {
         return clients;
+    }
+
+    public void ListaDeClientes() {
+        for (Client client : clients) {
+            System.out.println(client.getid() + " - " + client.getUsername() + " - " + client.getEmail() + " - " + client.getPhone() + " - " + client.getBook());
+        }
     }
 }
 

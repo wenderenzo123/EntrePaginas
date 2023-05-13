@@ -6,21 +6,21 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import com.entrepaginas.model.Book;
 import com.entrepaginas.model.Client;
-import com.entrepaginas.utils.ArrayList;
 
 public class File {
-    public static String Read(String Caminho){
+    public static String Read(String Caminho) {
         String conteudo = "";
         try {
             FileReader arq = new FileReader(Caminho);
             BufferedReader lerArq = new BufferedReader(arq);
-            String linha="";
+            String linha = "";
             try {
                 linha = lerArq.readLine();
-                while(linha!=null){
+                while (linha != null) {
                     conteudo += linha;
                     linha = lerArq.readLine();
                 }
@@ -35,21 +35,23 @@ public class File {
             return "";
         }
     }
-    
-    public static <T> boolean Write(String Caminho, ArrayList<T> array, int type){
+
+    public static <T> boolean Write(String Caminho, ArrayList<T> arrayList, int type) {
         try {
             FileWriter arq = new FileWriter(Caminho);
             PrintWriter gravarArq = new PrintWriter(arq);
-            
+
             switch (type) {
                 case 1:
-                    for (T book : array) {
-                        gravarArq.println(((Book) book).getTitle()+","+((Book) book).getAuthor()+","+((Book) book).getIsbn()+ ","+ ((Book) book).isAvailable()+";");
+                    for (T book : arrayList) {
+                        gravarArq.println(((Book) book).getTitle() + "," + ((Book) book).getAuthor() + ","
+                                + ((Book) book).getIsbn() + "," + ((Book) book).getQtd() + ";");
                     }
                     break;
                 case 2:
-                    for (T client : array) {
-                        gravarArq.println(((Client) client).getid()+","+((Client) client).getUsername()+","+((Client) client).getEmail()+";");    
+                    for (T client : arrayList) {
+                        gravarArq.println(((Client) client).getid() + "," + ((Client) client).getUsername() + ","
+                                + ((Client) client).getEmail() + "," + ((Client) client).getPhone() + "," + ((Client) client).getBook() + ";");
                     }
                     break;
                 default:
@@ -57,7 +59,7 @@ public class File {
             }
             gravarArq.close();
             return true;
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return false;
         }
