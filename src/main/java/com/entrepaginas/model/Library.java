@@ -1,12 +1,12 @@
 package com.entrepaginas.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.entrepaginas.utils.ArrayList;
 
 public class Library {
     private ArrayList<Book> books;
