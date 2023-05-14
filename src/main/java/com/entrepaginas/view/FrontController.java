@@ -159,6 +159,15 @@ public class FrontController implements Initializable {
         listClientInit();
     }
 
+    public void editCliente(){
+        
+    }
+
+    public void removeCliente(){
+        usersModel.removeClient(inputClientId.getText());
+        Readers.writeFileClient("Clientes.csv", usersModel);
+        listClientInit();
+    }   
 
 
     

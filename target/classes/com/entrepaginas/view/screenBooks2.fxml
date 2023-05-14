@@ -81,7 +81,7 @@
                               <TextField fx:id="inputTelefone" layoutX="11.0" layoutY="155.0" prefHeight="25.0" prefWidth="204.0" />
                               <Label layoutX="11.0" layoutY="84.0" prefHeight="27.0" prefWidth="41.0" text="CPF:" textFill="WHITE" />
                               <TextField fx:id="inputCpf" layoutX="11.0" layoutY="107.0" prefHeight="25.0" prefWidth="202.0" />
-                              <Button fx:id="registerClientButton1" layoutX="73.0" layoutY="224.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff0000; -fx-text-fill: #fff;" text="Deletar" textFill="WHITE">
+                              <Button fx:id="deleteClient" layoutX="73.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeCliente" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff0000; -fx-text-fill: #fff;" text="Deletar" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
