@@ -3,6 +3,8 @@ package com.entrepaginas;
 import com.entrepaginas.model.Book;
 import com.entrepaginas.model.Client;
 import com.entrepaginas.model.Library;
+import com.entrepaginas.model.Rent;
+import com.entrepaginas.model.Rents;
 import com.entrepaginas.model.Users;
 import com.entrepaginas.utils.File;
 import com.entrepaginas.utils.Readers;
@@ -13,11 +15,14 @@ public class App {
 
         String ArqBooks = "livros.csv";
         String ArqClient = "Clientes.csv";
+        String ArqRent = "Alugueis.csv";
 
         Library library = new Library();
         Users users = new Users();
+        Rents rents = new Rents();
         users = Readers.readFileUsers(ArqClient);
         library = Readers.readFileLibrary(ArqBooks);
+        rents = Readers.readFileRent(ArqRent);
         System.out.println("Livros cadastrados: ");
         while (true) {
             menu();
@@ -58,13 +63,18 @@ public class App {
                     String isbn3 = System.console().readLine();
                     System.out.println("Digite o ID do cliente: ");
                     String id = System.console().readLine();
+                    System.out.println("Digite o nome do cliente: ");
                     users.borrowBook(id, isbn3, library);
                     library.borrowBook(isbn3);
+                    rents.addRent(id+isbn3 ,isbn3,library.findBook(isbn3).getTitle(),id,users.findClient(id).getUsername());
                     break;
                 case 6:
                     System.out.println("Digite o ISBN do livro a ser devolvido: ");
                     String isbn4 = System.console().readLine();
+                    System.out.println("Digite o ID do rent: ");
+                    String id1 = System.console().readLine();
                     library.returnBook(isbn4);
+                    rents.removeRent(id1);
                     break;
                 case 7:
                     library.printAvailableBooks();
@@ -99,11 +109,8 @@ public class App {
                     users.removeClient(id4);
                     break;
                 case 0:
+                    writeFileRent(ArqRent, rents);
                     System.exit(0);
-                    // Atualizando a base de Livros
-                    // writeFileBook(ArqBooks, library);
-                    // Atualizando a base de Clientes
-                    // writeFileClient(ArqClient, users);
                     break;
                 default:
                     System.out.println("Opção inválida!");
@@ -131,7 +138,6 @@ public class App {
 
     public static Library readFileLibrary(String path) {
         String conteudo = File.Read(path);
-        System.out.println(conteudo);
         Library library = new Library();
         for (String string : conteudo.split(";")) {
             Book book = new Book();
@@ -145,7 +151,6 @@ public class App {
     }
     public static Users readFileUsers(String path) {
         String conteudo = File.Read(path);
-        System.out.println(conteudo);
         Users users = new Users();
         for (String string : conteudo.split(";")) {
             Client client = new Client();
@@ -157,11 +162,31 @@ public class App {
         return users;
     }
 
+    public static Rents readFilRent(String path) {
+        String conteudo = File.Read(path);
+        System.out.println(conteudo);
+        Rents rents = new Rents();
+        for (String string : conteudo.split(";")) {
+            Rent rent = new Rent();
+            rent.setRentId(string.split(",")[0]);
+            rent.setIsbn(string.split(",")[1]);
+            rent.setLivro(string.split(",")[2]);
+            rent.setClientId(string.split(",")[3]);
+            rent.setClientName(string.split(",")[4]);
+            rents.addRent(rent);
+        }
+        return rents;
+    }
+
     public static void writeFileBook(String path, Library library) {
         File.Write(path, library.returnBooks(),1);
     }
 
     public static void writeFileClient(String path, Users users) {
         File.Write(path, users.returnClients(),2);
+    }
+
+    public static void writeFileRent(String path, Rents rents) {
+        File.Write(path, rents.returnRents(),3);
     }
 }
