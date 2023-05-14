@@ -29,6 +29,7 @@ public class FrontController implements Initializable {
     private Client userSelecionado;
     private Book livroAluguelSelecionado;
     private Client clientAluguelSelecionado;
+    private Rent rentSelecionado;
 
     //Listagem de Livros
     @FXML private TableColumn<Book,String> bookIsbn;
@@ -69,6 +70,16 @@ public class FrontController implements Initializable {
 
     @FXML private TextField inputLivroSelected;
 	@FXML private TextField inputClienteSelected;
+
+
+    //ALUGADOS
+    @FXML private TableColumn<Rent,String> columnIdLivroAlugado;
+    @FXML private TableColumn<Rent,String> columnLivroNomeAlugado;
+    @FXML private TableColumn<Rent,String> columnClienteNomeAlugado;
+    @FXML private TableView<Rent> tableLivroAlugados;
+
+    @FXML private TextField inputLivroSelectedAlugado;
+    @FXML private TextField inputClientSelectedAlugado;
 
 
 
@@ -122,6 +133,17 @@ public class FrontController implements Initializable {
 				clientAluguelSelecionado = newValue;
                 if(clientAluguelSelecionado != null){
                     inputClienteSelected.setText(clientAluguelSelecionado.getUsername());
+                }
+			}
+        });
+
+        tableLivroAlugados.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Rent>() {
+			@Override
+			public void changed(ObservableValue<? extends Rent> observable, Rent oldValue, Rent newValue) {
+				rentSelecionado = newValue;
+                if(rentSelecionado != null){
+                    inputLivroSelectedAlugado.setText(rentSelecionado.getName());
+                    inputClientSelectedAlugado.setText(rentSelecionado.getTitle());
                 }
 			}
         });
