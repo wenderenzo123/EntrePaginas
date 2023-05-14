@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 import com.entrepaginas.model.Book;
 import com.entrepaginas.model.Client;
-import com.entrepaginas.model.Library;
-import com.entrepaginas.model.Users;
+import com.entrepaginas.model.Rent;
 
 public class File {
     public static String Read(String Caminho) {
@@ -56,6 +55,11 @@ public class File {
                                 + ((Client) client).getCpf() + "," + ((Client) client).getPhone() + ";");
                     }
                     break;
+                case 3:
+                    for (T rent : arrayList) {
+                        gravarArq.println(((Rent) rent).getRentId() +","+ ((Rent) rent).getIsbn() + "," + ((Rent) rent).getLivro() + "," +
+                        ((Rent) rent).getClientId() + ","  + ((Rent) rent).getClientName() + ";");
+                    }
                 default:
                     break;
             }
