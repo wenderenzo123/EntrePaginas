@@ -29,8 +29,9 @@
                         <TableView fx:id="books" layoutX="57.0" layoutY="38.0" prefHeight="338.0" prefWidth="388.0" style="-fx-background-color: #4D565C;">
                           <columns>
                             <TableColumn fx:id="bookIsbn" prefWidth="49.0" text="isbn" />
-                            <TableColumn fx:id="bookAuthor" prefWidth="190.0" text="Autor" />
-                              <TableColumn fx:id="bookTitle" prefWidth="145.5999755859375" text="Titulo" />
+                            <TableColumn fx:id="bookAuthor" prefWidth="130.40003204345703" text="Autor" />
+                              <TableColumn fx:id="bookTitle" prefWidth="108.79998779296875" text="Titulo" />
+                              <TableColumn fx:id="bookQtd" prefWidth="97.60000610351562" text="qtd" />
                           </columns>
                         </TableView>
                         <Pane fx:id="registerBooksContainer" layoutX="471.0" layoutY="38.0" prefHeight="226.0" prefWidth="223.0" style="-fx-background-color: #4D565C;">
@@ -68,33 +69,39 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane fx:id="registerClientContainer" layoutX="67.0" layoutY="50.0" prefHeight="199.0" prefWidth="223.0" style="-fx-background-color: #4D565C; -fx-background-radius: 2;">
+                        <Pane fx:id="registerClientContainer" layoutX="14.0" layoutY="46.0" prefHeight="268.0" prefWidth="223.0" style="-fx-background-color: #4D565C; -fx-background-radius: 2;">
                            <children>
-                              <Button fx:id="registerClientButton" layoutX="11.0" layoutY="163.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #4388C8; -fx-text-fill: #fff;" text="Cadastrar">
+                              <Button fx:id="registerClientButton" layoutX="12.0" layoutY="188.0" mnemonicParsing="false" onAction="#addCliente" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #3B9244; -fx-text-fill: #fff;" text="Cadastrar" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="11.0" layoutY="1.0" prefHeight="27.0" prefWidth="41.0" text="Nome:" textFill="WHITE" />
-                              <TextField layoutX="11.0" layoutY="24.0" prefHeight="25.0" prefWidth="204.0" />
-                              <Label layoutX="11.0" layoutY="52.0" prefHeight="27.0" prefWidth="41.0" text="idade:" textFill="WHITE" />
-                              <TextField layoutX="11.0" layoutY="75.0" prefHeight="25.0" prefWidth="54.0" />
-                              <Label layoutX="11.0" layoutY="102.0" prefHeight="27.0" prefWidth="55.0" text="Endereço:" textFill="WHITE" />
-                              <TextField layoutX="11.0" layoutY="125.0" prefHeight="25.0" prefWidth="204.0" />
-                              <Label layoutX="72.0" layoutY="52.0" prefHeight="27.0" prefWidth="41.0" text="CPF:" textFill="WHITE" />
-                              <TextField layoutX="72.0" layoutY="75.0" prefHeight="25.0" prefWidth="140.0" />
-                              <Button fx:id="deleteClientButton" layoutX="142.0" layoutY="166.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="70.0" style="-fx-background-color: none; -fx-border-radius: 2; -fx-border-color: #F01D5C; -fx-text-fill: #F01D5C;" text="Deletar" visible="false">
+                              <Label layoutX="11.0" layoutY="39.0" prefHeight="27.0" prefWidth="41.0" text="Nome:" textFill="WHITE" />
+                              <TextField fx:id="inputName" layoutX="11.0" layoutY="62.0" prefHeight="25.0" prefWidth="204.0" />
+                              <Label layoutX="11.0" layoutY="132.0" prefHeight="27.0" prefWidth="55.0" text="Telefone:" textFill="WHITE" />
+                              <TextField fx:id="inputTelefone" layoutX="11.0" layoutY="155.0" prefHeight="25.0" prefWidth="204.0" />
+                              <Label layoutX="11.0" layoutY="84.0" prefHeight="27.0" prefWidth="41.0" text="CPF:" textFill="WHITE" />
+                              <TextField fx:id="inputCpf" layoutX="11.0" layoutY="107.0" prefHeight="25.0" prefWidth="202.0" />
+                              <Button fx:id="deleteClient" layoutX="73.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeCliente" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff0000; -fx-text-fill: #fff;" text="Deletar" textFill="WHITE">
                                  <font>
-                                    <Font name="Arial Black" size="12.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Button>
+                              <Button fx:id="registerClientButton2" layoutX="135.0" layoutY="189.0" mnemonicParsing="false" onAction="#editCliente" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #4388C8; -fx-text-fill: #fff;" text="Editar">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="11.0" layoutY="-4.0" prefHeight="27.0" prefWidth="41.0" text="Id:" textFill="WHITE" />
+                              <TextField fx:id="inputClientId" layoutX="11.0" layoutY="19.0" prefHeight="25.0" prefWidth="35.0" />
                            </children>
                         </Pane>
-                        <TableView fx:id="tableInformationsBooks1" layoutX="343.0" layoutY="50.0" prefHeight="338.0" prefWidth="388.0" style="-fx-background-color: #4D565C;">
+                        <TableView fx:id="users" layoutX="249.0" layoutY="46.0" prefHeight="338.0" prefWidth="498.0" style="-fx-background-color: #4D565C;">
                            <columns>
-                              <TableColumn prefWidth="49.0" text="id" />
-                              <TableColumn prefWidth="190.0" text="Nome" />
-                              <TableColumn prefWidth="144.79998779296875" text="Cpf" />
+                              <TableColumn fx:id="clientId" prefWidth="49.0" text="id" />
+                              <TableColumn fx:id="clientName" prefWidth="151.2000732421875" text="Nome" />
+                              <TableColumn fx:id="clientCpf" prefWidth="151.99993896484375" text="Cpf" />
+                              <TableColumn fx:id="clientTelefone" prefWidth="146.39996337890625" text="Telefone" />
                            </columns>
                         </TableView>
                      </children>
@@ -105,37 +112,35 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="760.0">
                      <children>
-                        <Pane fx:id="alugueisInformations1" layoutX="57.0" layoutY="35.0" prefHeight="343.0" prefWidth="599.0" style="-fx-background-color: #4D565C; -fx-background-radius: 2;">
+                        <Pane fx:id="alugueisInformations1" layoutX="14.0" layoutY="31.0" prefHeight="343.0" prefWidth="494.0" style="-fx-background-color: #4D565C; -fx-background-radius: 2;">
                            <children>
-                              <Label layoutX="10.0" layoutY="37.0" prefHeight="27.0" prefWidth="54.0" style="-fx-background-color: transparent; -fx-text-fill: #fff;" text="Cliente:">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="10.0" layoutY="64.0" prefHeight="25.0" prefWidth="186.0" />
-                              <TableView fx:id="tableInformationsBooks11" layoutX="220.0" layoutY="1.0" prefHeight="343.0" prefWidth="389.0" style="-fx-background-color: #4D565C;">
+                              <TableView fx:id="tableLivroAluguel" layoutY="-3.0" prefHeight="346.0" prefWidth="241.0" style="-fx-background-color: #4D565C;">
                                  <columns>
-                                    <TableColumn prefWidth="49.0" text="id" />
-                                    <TableColumn prefWidth="134.39996337890625" text="Nome" />
-                                    <TableColumn prefWidth="201.60003662109375" text="Livro" />
+                                    <TableColumn fx:id="columnIdLivro" prefWidth="50.39999198913574" text="isbn" />
+                                    <TableColumn fx:id="columnNomeLivro1" minWidth="0.0" prefWidth="0.0" text="Livro" />
+                                    <TableColumn fx:id="columnNomeLivro" prefWidth="132.79999542236328" text="Livro" />
+                                    <TableColumn fx:id="columnQtdLivro" prefWidth="57.600006103515625" text="qtd" />
                                  </columns>
                               </TableView>
-                              <Button fx:id="deleteClientButton11" layoutX="14.0" layoutY="296.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #4388C8; -fx-border-radius: 2;" text="Devolver" textFill="WHITE">
+                              <TableView fx:id="tableClienteAluguel" layoutX="255.0" layoutY="-3.0" prefHeight="343.0" prefWidth="239.0" style="-fx-background-color: #4D565C;">
+                                 <columns>
+                                    <TableColumn fx:id="columnIdCliente" prefWidth="49.0" text="id" />
+                                    <TableColumn fx:id="columnNomeCliente" prefWidth="185.60004425048828" text="Nome Cliente" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="522.0" layoutY="31.0" prefHeight="234.0" prefWidth="223.0" style="-fx-background-color: #4D565C;">
+                           <children>
+                              <TextField fx:id="inputLivroSelected" layoutX="7.0" layoutY="23.0" prefHeight="25.0" prefWidth="209.0" />
+                              <Label layoutX="7.0" layoutY="7.0" text="Livro Selecionado" textFill="WHITE" />
+                              <TextField fx:id="inputClienteSelected" layoutX="7.0" layoutY="73.0" prefHeight="25.0" prefWidth="209.0" />
+                              <Label layoutX="7.0" layoutY="57.0" text="Cliente Selecionado" textFill="WHITE" />
+                              <Button fx:id="registerClientButton1" layoutX="60.0" layoutY="158.0" mnemonicParsing="false" onAction="#addCliente" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #3B9244; -fx-text-fill: #fff;" text="Alugar" textFill="WHITE">
                                  <font>
-                                    <Font name="Arial Black" size="12.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="deleteClientButton111" layoutX="109.0" layoutY="296.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" style="-fx-background-color: #6bbf33; -fx-border-radius: 2;" text="Renovar" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Label layoutX="10.0" layoutY="89.0" prefHeight="27.0" prefWidth="41.0" style="-fx-background-color: transparent; -fx-text-fill: #fff;" text="Livro:">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <TextField layoutX="10.0" layoutY="116.0" prefHeight="25.0" prefWidth="186.0" />
                            </children>
                         </Pane>
                      </children>
