@@ -108,7 +108,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab id="alugueis" fx:id="rentScreen" text="Alugueis">
+            <Tab id="alugueis" fx:id="rentScreen" text="Alugar">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="760.0">
                      <children>
@@ -146,6 +146,39 @@
                      </children>
                   </AnchorPane>
               </content>
+            </Tab>
+            <Tab id="alugueis" fx:id="rentScreen1" text="Alugados">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="760.0">
+                     <children>
+                        <Pane fx:id="alugueisInformations11" layoutX="14.0" layoutY="31.0" prefHeight="343.0" prefWidth="494.0" style="-fx-background-color: #4D565C; -fx-background-radius: 2;">
+                           <children>
+                              <TableView fx:id="tableLivroAlugados" layoutY="-3.0" prefHeight="346.0" prefWidth="495.0" style="-fx-background-color: #4D565C;">
+                                 <columns>
+                                    <TableColumn fx:id="columnIdLivroAlugado" prefWidth="50.39999198913574" text="id" />
+                                    <TableColumn fx:id="columnLivroIsbn" prefWidth="78.39999389648438" text="isbn" />
+                                    <TableColumn fx:id="columnLivroNomeAlugado" prefWidth="197.59994506835938" text="livro" />
+                                    <TableColumn fx:id="columnClienteNomeAlugado" prefWidth="166.4000244140625" text="Cliente" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="522.0" layoutY="31.0" prefHeight="234.0" prefWidth="223.0" style="-fx-background-color: #4D565C;">
+                           <children>
+                              <TextField fx:id="inputLivroSelectedAlugado" editable="false" layoutX="7.0" layoutY="23.0" prefHeight="25.0" prefWidth="209.0" />
+                              <Label layoutX="7.0" layoutY="7.0" text="Livro Selecionado" textFill="WHITE" />
+                              <TextField fx:id="inputClientSelectedAlugado" editable="false" layoutX="7.0" layoutY="73.0" prefHeight="25.0" prefWidth="209.0" />
+                              <Label layoutX="7.0" layoutY="57.0" text="Cliente Selecionado" textFill="WHITE" />
+                              <Button fx:id="registerClientButton11" layoutX="60.0" layoutY="158.0" mnemonicParsing="false" onAction="#devolverLivro" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #3B9244; -fx-text-fill: #fff;" text="Devolver" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
             </Tab>
         </tabs>
       </TabPane>
