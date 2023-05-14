@@ -48,7 +48,7 @@ public class Users {
         }
     }
 
-    public ArrayList returnClients() {
+    public ArrayList<Client> returnClients() {
         return clients;
     }
 

@@ -1,4 +1,4 @@
-package com.entrepaginas;
+package com.entrepaginas.utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import com.entrepaginas.model.Book;
 import com.entrepaginas.model.Client;
+import com.entrepaginas.model.Library;
+import com.entrepaginas.model.Users;
 
 public class File {
     public static String Read(String Caminho) {
@@ -35,8 +37,8 @@ public class File {
             return "";
         }
     }
-
-    public static <T> boolean Write(String Caminho, ArrayList<T> arrayList, int type) {
+    
+    public static <T> boolean Write(String Caminho, ArrayList<T> arrayList, int type){
         try {
             FileWriter arq = new FileWriter(Caminho);
             PrintWriter gravarArq = new PrintWriter(arq);

@@ -15,7 +15,7 @@ public class Library {
     private Stack<Book> recentBooks;
 
     public Library() {
-        this.books = new ArrayList<>();
+        this.books = new ArrayList<Book>();
         this.bookMap = new HashMap<>();
         this.waitingList = new LinkedList<>();
         this.recentBooks = new Stack<>();
