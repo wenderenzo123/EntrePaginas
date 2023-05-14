@@ -4,20 +4,28 @@ public class Book {
     private String title;
     private String author;
     private String isbn;
-    private boolean available;
+    private int qtd;
 
-    public Book(String title, String author, String isbn) {
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
+    }
+
+    public Book(String title, String author, String isbn, int qtd) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
-        this.available = true;
+        this.qtd = qtd;
     }
 
     public Book() {
         this.title = "";
         this.author = "";
         this.isbn = "";
-        this.available = true;
+        this.qtd = 0;
     }
 
     public String getTitle() {
@@ -32,13 +40,6 @@ public class Book {
         return isbn;
     }
 
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
     public void setTitle(String title) {
         this.title = title;
     }
@@ -48,7 +49,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return title + " by " + author + " (ISBN: " + isbn + ")";
+        return title + " by " + author + " (ISBN: " + isbn + ")" + " (Quantidade disponivel: " + qtd + ")";
     }
 
     public void setIsbn(String string) {

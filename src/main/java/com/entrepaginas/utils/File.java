@@ -14,15 +14,15 @@ import com.entrepaginas.model.Library;
 import com.entrepaginas.model.Users;
 
 public class File {
-    public static String Read(String Caminho){
+    public static String Read(String Caminho) {
         String conteudo = "";
         try {
             FileReader arq = new FileReader(Caminho);
             BufferedReader lerArq = new BufferedReader(arq);
-            String linha="";
+            String linha = "";
             try {
                 linha = lerArq.readLine();
-                while(linha!=null){
+                while (linha != null) {
                     conteudo += linha;
                     linha = lerArq.readLine();
                 }
@@ -42,16 +42,18 @@ public class File {
         try {
             FileWriter arq = new FileWriter(Caminho);
             PrintWriter gravarArq = new PrintWriter(arq);
-            
+
             switch (type) {
                 case 1:
                     for (T book : arrayList) {
-                        gravarArq.println(((Book) book).getTitle()+","+((Book) book).getAuthor()+","+((Book) book).getIsbn()+ ","+ ((Book) book).isAvailable()+";");
+                        gravarArq.println(((Book) book).getTitle() + "," + ((Book) book).getAuthor() + ","
+                                + ((Book) book).getIsbn() + "," + ((Book) book).getQtd() + ";");
                     }
                     break;
                 case 2:
                     for (T client : arrayList) {
-                        gravarArq.println(((Client) client).getid()+","+((Client) client).getUsername()+","+((Client) client).getEmail()+";");    
+                        gravarArq.println(((Client) client).getid() + "," + ((Client) client).getUsername() + ","
+                                + ((Client) client).getEmail() + "," + ((Client) client).getPhone() + "," + ((Client) client).getBook() + ";");
                     }
                     break;
                 default:
@@ -59,7 +61,7 @@ public class File {
             }
             gravarArq.close();
             return true;
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return false;
         }

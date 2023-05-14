@@ -1,15 +1,11 @@
 package com.entrepaginas.view;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.entrepaginas.model.Book;
-import com.entrepaginas.model.Client;
 import com.entrepaginas.model.Library;
-import com.entrepaginas.model.Users;
 import com.entrepaginas.utils.Readers;
-import com.entrepaginas.utils.Readers.*;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -40,9 +36,7 @@ public class FrontController implements Initializable {
     @FXML private TextField inputTitle;
 	@FXML private TextField inputAuthor;
     @FXML private TextField inputIsbn;
-
-
-
+    @FXML private TextField inputQuantidade;
 
 
     private ObservableList<Book> livroList = FXCollections.observableArrayList();
@@ -54,6 +48,12 @@ public class FrontController implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends Book> observable, Book oldValue, Book newValue) {
 				livroSelecionado = newValue;
+                if(livroSelecionado != null){
+                    inputAuthor.setText(livroSelecionado.getAuthor());
+                    inputIsbn.setText(livroSelecionado.getIsbn());
+                    inputTitle.setText(livroSelecionado.getTitle());
+                    inputQuantidade.setText(Integer.toString(livroSelecionado.getQtd()));
+                }
 			}});
     }
 
@@ -83,11 +83,21 @@ public class FrontController implements Initializable {
         newBook.setAuthor(inputAuthor.getText());
         newBook.setIsbn(inputIsbn.getText());
         newBook.setTitle(inputTitle.getText());
-        newBook.setAvailable(true);
 
         library.addBook(newBook);
         Readers.writeFileBook("livros.csv", library);
         listBookInit();
     }
     
+
+    public void editBook() {
+        Book tempBook = new Book();
+        tempBook.setIsbn(inputIsbn.getText());
+        tempBook.setAuthor(inputAuthor.getText());
+        tempBook.setTitle(inputTitle.getText());
+        tempBook.setQtd(Integer.parseInt(inputQuantidade.getText()));
+        library.updateBook(livroSelecionado.getIsbn(), tempBook);
+        Readers.writeFileBook("livros.csv", library);
+        listBookInit();
+    }
 }

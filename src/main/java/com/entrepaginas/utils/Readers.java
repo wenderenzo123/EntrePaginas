@@ -16,7 +16,7 @@ public class Readers {
             book.setTitle(string.split(",")[0]);
             book.setAuthor(string.split(",")[1]);
             book.setIsbn(string.split(",")[2]);
-            book.setAvailable(Boolean.parseBoolean(string.split(",")[3]));
+            book.setQtd(Integer.parseInt(string.split(",")[3]));
             library.addBook(book);
         }
         return library;
@@ -36,14 +36,13 @@ public class Readers {
         }
         return users;
     }
-
     
     public static void writeFileBook(String path, Library library) {
-        File.Write(path, library.returnBooks(),1);
+        File.Write(path, library.returnBooks(), 1);
     }
-
+    
     public static void writeFileClient(String path, Users users) {
-        // File.Write(path, users.returnClients(),2);
+        File.Write(path, users.returnClients(), 2);
     }
 
 }

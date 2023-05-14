@@ -25,16 +25,18 @@ public class Library {
         books.add(book);
         bookMap.put(book.getIsbn(), book);
         recentBooks.push(book);
+        System.out.println(bookMap);
     }
 
     public Book findBook(String isbn) {
+        System.out.println(bookMap);
         return bookMap.get(isbn);
     }
 
     public void borrowBook(String isbn) {
         Book book = bookMap.get(isbn);
-        if (book.isAvailable()) {
-            book.setAvailable(false);
+        if (book.getQtd()>0) {
+            book.setQtd(book.getQtd()-1);
         } else {
             waitingList.add(book);
         }
@@ -42,8 +44,9 @@ public class Library {
 
     public void returnBook(String isbn) {
         Book book = bookMap.get(isbn);
-        book.setAvailable(true);
-        recentBooks.push(book);
+        if (book.getQtd()>=0) {
+            book.setQtd(book.getQtd()+1);
+        }
     }
 
     public ArrayList<Book> returnBooks() {
@@ -69,14 +72,18 @@ public class Library {
         bookMap.remove(isbn);
     }
 
-    public void updateBook(String isbn, String newBook) {
+    public void updateBook(String isbn, Book newBook) {
         Book book = bookMap.get(isbn);
-        book.setTitle(newBook);
+        book.setTitle(newBook.getTitle());
+        book.setAuthor(newBook.getAuthor());
+        book.setQtd(newBook.getQtd());
+
+        bookMap.put(isbn, book);
     }
 
     public void printAvailableBooks() {
         for (Book book : books) {
-            if (book.isAvailable()) {
+            if (book.getQtd()>0) {
                 System.out.println(book);
             }
         }
@@ -90,7 +97,7 @@ public class Library {
 
     public void printUnvailableBooks() {
         for (Book book : books) {
-            if (!book.isAvailable()) {
+            if (book.getQtd()==0) {
                 System.out.println(book);
             }
         }
