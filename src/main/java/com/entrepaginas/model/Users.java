@@ -63,11 +63,13 @@ public class Users {
         clients.remove(client);
     }
 
-    public void updateClient(String clientId, String username, String cpf, String phone) {
-        Client client = findClient(clientId);
-        client.setUsername(username);
-        client.setCpf(cpf);
-        client.setPhone(phone);
+    public void updateClient(String id3, Client client) {
+        Client client2 = findClient(id3);
+        client2.setUsername(client.getUsername());
+        client2.setCpf(client.getCpf());
+        client2.setPhone(client.getPhone());
+
+        clients.set(clients.indexOf(client2), client2);
     }
 }
 
