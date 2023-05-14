@@ -72,9 +72,13 @@ public class Library {
         bookMap.remove(isbn);
     }
 
-    public void updateBook(String isbn, String newBook) {
+    public void updateBook(String isbn, Book newBook) {
         Book book = bookMap.get(isbn);
-        book.setTitle(newBook);
+        book.setTitle(newBook.getTitle());
+        book.setAuthor(newBook.getAuthor());
+        book.setQtd(newBook.getQtd());
+
+        bookMap.put(isbn, book);
     }
 
     public void printAvailableBooks() {
