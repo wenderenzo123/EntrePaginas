@@ -27,12 +27,15 @@ public class FrontController implements Initializable {
     private Users usersModel = new Users();
     private Book livroSelecionado;
     private Client userSelecionado;
+    private Book livroAluguelSelecionado;
+    private Client clientAluguelSelecionado;
 
     //Listagem de Livros
     @FXML private TableColumn<Book,String> bookIsbn;
     @FXML private TableColumn<Book,String> bookAuthor;
     @FXML private TableColumn<Book,String> bookTitle;
     @FXML private TableColumn<Book,String> bookPrice;
+    @FXML private TableColumn<Book,String> bookQtd;
     @FXML private TableView<Book> books;
 
     //Inputs de Livros
@@ -56,6 +59,19 @@ public class FrontController implements Initializable {
     @FXML private TextField inputClientId;
 
 
+    @FXML private TableView<Book> tableLivroAluguel;
+    @FXML private TableView<Client> tableClienteAluguel;
+    @FXML private TableColumn<Book,String> columnIdLivro;
+    @FXML private TableColumn<Book,String> columnNomeLivro;
+    @FXML private TableColumn<Book,String> columnQtdLivro;
+    @FXML private TableColumn<Client,String> columnIdCliente;
+    @FXML private TableColumn<Client,String> columnNomeCliente;
+
+    @FXML private TextField inputLivroSelected;
+	@FXML private TextField inputClienteSelected;
+
+
+
     private ObservableList<Book> livroList = FXCollections.observableArrayList();
     private ObservableList<Client> clientList = FXCollections.observableArrayList();
 
@@ -63,6 +79,8 @@ public class FrontController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         listBookInit();
         listClientInit();
+        listBookAluguelInit();
+        listClientAluguelInit();
         books.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Book>() {
 			@Override
 			public void changed(ObservableValue<? extends Book> observable, Book oldValue, Book newValue) {
@@ -89,6 +107,25 @@ public class FrontController implements Initializable {
 			}
         });
 
+        tableLivroAluguel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Book>() {
+			@Override
+			public void changed(ObservableValue<? extends Book> observable, Book oldValue, Book newValue) {
+				livroAluguelSelecionado = newValue;
+                if(livroAluguelSelecionado != null){
+                    inputLivroSelected.setText(livroAluguelSelecionado.getTitle());
+                }
+			}
+        });
+        tableClienteAluguel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Client>() {
+			@Override
+			public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
+				clientAluguelSelecionado = newValue;
+                if(clientAluguelSelecionado != null){
+                    inputClienteSelected.setText(clientAluguelSelecionado.getUsername());
+                }
+			}
+        });
+
         
     }
 
@@ -100,8 +137,7 @@ public class FrontController implements Initializable {
         bookIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         bookAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         bookTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        // bookPrice.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        // System.out.println(library.returnBooks());
+        bookQtd.setCellValueFactory(new PropertyValueFactory<>("qtd"));
         livroList = FXCollections.observableArrayList(library.returnBooks());
         books.setItems(livroList);
     }
@@ -160,7 +196,16 @@ public class FrontController implements Initializable {
     }
 
     public void editCliente(){
-        
+        Client newClient = new Client();
+
+        newClient.setid(inputClientId.getText());
+        newClient.setUsername(inputName.getText());
+        newClient.setCpf(inputCpf.getText());
+        newClient.setPhone(inputTelefone.getText());
+
+        usersModel.updateClient(inputClientId.getText(), newClient);
+        Readers.writeFileClient("Clientes.csv", usersModel);
+        listClientInit();
     }
 
     public void removeCliente(){
@@ -169,6 +214,31 @@ public class FrontController implements Initializable {
         listClientInit();
     }   
 
+
+
+
+    public void listBookAluguelInit(){
+        library = Readers.readFileLibrary("livros.csv");
+        columnIdLivro.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        columnNomeLivro.setCellValueFactory(new PropertyValueFactory<>("title"));
+        columnQtdLivro.setCellValueFactory(new PropertyValueFactory<>("qtd"));
+        livroList = FXCollections.observableArrayList(library.returnBooks());
+        tableLivroAluguel.setItems(livroList);
+    }
+
+    public void listClientAluguelInit(){
+        usersModel = Readers.readFileUsers("Clientes.csv");
+        columnIdCliente.setCellValueFactory(new PropertyValueFactory<>("clientId"));
+        columnNomeCliente.setCellValueFactory(new PropertyValueFactory<>("username"));
+        clientList = FXCollections.observableArrayList(usersModel.returnClients());
+        tableClienteAluguel.setItems(clientList);
+    }
+
+    // public void alugarLivro(){
+    //     usersModel.borrowBook(clientAluguelSelecionado.getClientId(), livroAluguelSelecionado.getIsbn(), library);
+    //     Readers.writeFileBook("livros.csv", library);
+    //     listBookAluguelInit();
+    // }
 
     
 

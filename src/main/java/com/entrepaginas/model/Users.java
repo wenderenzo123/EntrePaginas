@@ -41,7 +41,6 @@ public class Users {
         Client client = findClient(id);
         Book book = library.findBook(isbn3);
         if (book.getQtd()>0) {
-            // client.setBook(book.getIsbn());
             historico.push("O livro " + book.getTitle() + " foi emprestado para " + client.getUsername());
         } else {
             historico.push("O livro " + book.getTitle() + " não está disponível");
