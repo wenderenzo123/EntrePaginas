@@ -57,5 +57,17 @@ public class Users {
             System.out.println(client.getClientId() + " - " + client.getUsername() + " - " + client.getPhone() + " - " + client.getCpf());
         }
     }
+
+    public void removeClient(String clientId) {
+        Client client = findClient(clientId);
+        clients.remove(client);
+    }
+
+    public void updateClient(String clientId, String username, String cpf, String phone) {
+        Client client = findClient(clientId);
+        client.setUsername(username);
+        client.setCpf(cpf);
+        client.setPhone(phone);
+    }
 }
 

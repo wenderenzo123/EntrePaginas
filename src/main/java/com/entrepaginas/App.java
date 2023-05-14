@@ -6,7 +6,6 @@ import com.entrepaginas.model.Library;
 import com.entrepaginas.model.Users;
 import com.entrepaginas.utils.File;
 import com.entrepaginas.utils.Readers;
-import com.entrepaginas.utils.Readers.*;
 
 public class App {
 
@@ -47,7 +46,12 @@ public class App {
                     String isbn2 = System.console().readLine();
                     System.out.println("Digite o Novo Titulo do livro: ");
                     String title = System.console().readLine();
-                    library.updateBook(isbn2, title);
+                    System.out.println("Digite o Novo Autor do livro: ");
+                    String author = System.console().readLine();
+                    System.out.println("Digite a Nova Quantidade do livro: ");
+                    int qtd = Integer.parseInt(System.console().readLine());
+                    Book book2 = new Book(title, author, isbn2, qtd);
+                    library.updateBook(isbn2,book2);
                     break;
                 case 5:
                     System.out.println("Digite o ISBN do livro a ser emprestado: ");
@@ -102,6 +106,7 @@ public class App {
         System.out.println("8 - Histotico de emprestimos");
         System.out.println("9 - Lista de clientes");
         System.out.println("10 - Buscar Cliente");
+        
         System.out.println("0 - Sair");
         System.out.println("Digite a opção desejada: ");
     }
@@ -128,9 +133,7 @@ public class App {
             Client client = new Client();
             client.setid(string.split(",")[0]);
             client.setUsername(string.split(",")[1]);
-            client.setEmail(string.split(",")[2]);
             client.setPhone(string.split(",")[3]);
-            client.setBook(string.split(",")[4]);
             users.addClient(client);
         }
         return users;
