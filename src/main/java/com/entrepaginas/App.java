@@ -81,6 +81,23 @@ public class App {
                     String id2 = System.console().readLine();
                     System.out.println(users.findClient(id2));
                     break;
+                case 11:
+                    System.out.println("Digite o ID do cliente a ser atualizado: ");
+                    String id3 = System.console().readLine();
+                    System.out.println("Digite o Novo Nome do cliente: ");
+                    String nome = System.console().readLine();
+                    System.out.println("Digite o Novo CPF do cliente: ");
+                    String cpf = System.console().readLine();
+                    System.out.println("Digite o Novo Telefone do cliente: ");
+                    String telefone = System.console().readLine();
+                    Client client = new Client(nome, id3, cpf, telefone);
+                    users.updateClient(id3, client);
+                    break;
+                case 12:
+                    System.out.println("Digite o ID do cliente a ser removido: ");
+                    String id4 = System.console().readLine();
+                    users.removeClient(id4);
+                    break;
                 case 0:
                     System.exit(0);
                     // Atualizando a base de Livros
@@ -106,7 +123,8 @@ public class App {
         System.out.println("8 - Histotico de emprestimos");
         System.out.println("9 - Lista de clientes");
         System.out.println("10 - Buscar Cliente");
-        
+        System.out.println("11 - Atualizar Cliente");
+        System.out.println("12 - Remover Cliente");
         System.out.println("0 - Sair");
         System.out.println("Digite a opção desejada: ");
     }
