@@ -1,56 +1,46 @@
 package com.entrepaginas.model;
 
 public class Client {
+    private String clientId;
     private String username;
-    private String id;
-    private String email;
+    private String cpf;
     private String phone;
-    private String book;
 
     
-    public Client(String username, String id, String email, String phone, String book) {
+    public Client(String username, String clientId, String cpf, String phone) {
         this.username = username;
-        this.id = id;
-        this.email = email;
+        this.clientId = clientId;
+        this.cpf = cpf;
         this.phone = phone;
-        this.book = book;
     }
 
     public Client() {
         this.username = "";
-        this.id = "";
-        this.email = "";
+        this.clientId = "";
+        this.cpf = "";
         this.phone = "";
-        this.book = "";
     }
     
     public String getUsername() {
         return username;
     }
     
-    public String getid() {
-        return id;
+    public String getClientId() {
+        return clientId;
     }
     
-    public String getEmail() {
-        return email;
+    public String getCpf() {
+        return cpf;
     }
     
     public void setUsername(String username) {
         this.username = username;
     }
-    public void setid(String id) {
-        this.id= id;
+    public void setid(String clientId) {
+        this.clientId= clientId;
     }
-    public void setEmail(String email) {
-        this.email= email;
-    }
-    public String getBook() {
-        return book;
-    }
-    
-    public void setBook(String book) {
-        this.book = book;
+    public void setCpf(String cpf) {
+        this.cpf= cpf;
     }
     
     public String getPhone() {

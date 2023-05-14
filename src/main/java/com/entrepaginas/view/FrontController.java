@@ -4,7 +4,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.entrepaginas.model.Book;
+import com.entrepaginas.model.Client;
 import com.entrepaginas.model.Library;
+import com.entrepaginas.model.Users;
 import com.entrepaginas.utils.Readers;
 
 import javafx.beans.value.ChangeListener;
@@ -22,8 +24,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FrontController implements Initializable {
 
     private Library library = new Library();
-    // private Users users = new Users();
+    private Users usersModel = new Users();
     private Book livroSelecionado;
+    private Client userSelecionado;
 
     //Listagem de Livros
     @FXML private TableColumn<Book,String> bookIsbn;
@@ -39,11 +42,27 @@ public class FrontController implements Initializable {
     @FXML private TextField inputQuantidade;
 
 
+    //Listagem de CLientes
+    @FXML private TableColumn<Users,String> clientId;
+    @FXML private TableColumn<Users,String> clientName;
+    @FXML private TableColumn<Users,String> clientCpf;
+    @FXML private TableColumn<Users,String> clientTelefone;
+    @FXML private TableView<Client> users;
+
+    //INPUTS DE CLIENTES
+    @FXML private TextField inputName;
+	@FXML private TextField inputCpf;
+    @FXML private TextField inputTelefone;
+    @FXML private TextField inputClientId;
+
+
     private ObservableList<Book> livroList = FXCollections.observableArrayList();
+    private ObservableList<Client> clientList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         listBookInit();
+        listClientInit();
         books.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Book>() {
 			@Override
 			public void changed(ObservableValue<? extends Book> observable, Book oldValue, Book newValue) {
@@ -54,12 +73,28 @@ public class FrontController implements Initializable {
                     inputTitle.setText(livroSelecionado.getTitle());
                     inputQuantidade.setText(Integer.toString(livroSelecionado.getQtd()));
                 }
-			}});
+			}
+        });
+
+        users.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Client>() {
+			@Override
+			public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
+				userSelecionado = newValue;
+                if(userSelecionado != null){
+                    // inputClientId.setText(userSelecionado.getid());
+                    inputName.setText(userSelecionado.getUsername());
+                    inputCpf.setText(userSelecionado.getCpf());
+                    inputTelefone.setText(userSelecionado.getPhone());
+                }
+			}
+        });
+
+        
     }
 
 
 
-
+    // FUNçÕES DE LIVROS
     public void listBookInit(){
         library = Readers.readFileLibrary("livros.csv");
         bookIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
@@ -100,4 +135,26 @@ public class FrontController implements Initializable {
         Readers.writeFileBook("livros.csv", library);
         listBookInit();
     }
+
+
+    public void listClientInit(){
+        usersModel = Readers.readFileUsers("Clientes.csv");
+        clientId.setCellValueFactory(new PropertyValueFactory<>("clientId"));
+        clientName.setCellValueFactory(new PropertyValueFactory<>("username"));
+        clientCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        clientTelefone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        clientList = FXCollections.observableArrayList(usersModel.returnClients());
+        users.setItems(clientList);
+    }
+
+    public void addCliente(){
+
+    }
+
+
+
+    
+
+
+
 }

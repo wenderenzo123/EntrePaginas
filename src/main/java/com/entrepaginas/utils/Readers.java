@@ -29,9 +29,8 @@ public class Readers {
             Client client = new Client();
             client.setid(string.split(",")[0]);
             client.setUsername(string.split(",")[1]);
-            client.setEmail(string.split(",")[2]);
+            client.setCpf(string.split(",")[2]);
             client.setPhone(string.split(",")[3]);
-            client.setBook(string.split(",")[4]);
             users.addClient(client);
         }
         return users;
