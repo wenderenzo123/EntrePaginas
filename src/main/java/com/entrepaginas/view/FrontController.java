@@ -234,11 +234,13 @@ public class FrontController implements Initializable {
         tableClienteAluguel.setItems(clientList);
     }
 
-    // public void alugarLivro(){
-    //     usersModel.borrowBook(clientAluguelSelecionado.getClientId(), livroAluguelSelecionado.getIsbn(), library);
-    //     Readers.writeFileBook("livros.csv", library);
-    //     listBookAluguelInit();
-    // }
+    public void alugarLivro(){
+        library.borrowBook(livroAluguelSelecionado.getIsbn());
+        usersModel.borrowBook(clientAluguelSelecionado.getClientId(), livroAluguelSelecionado.getIsbn(), library);
+
+        Readers.writeFileBook("livros.csv", library);
+        listBookAluguelInit();
+    }
 
     
 
