@@ -81,7 +81,7 @@ public class FrontController implements Initializable {
 			public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
 				userSelecionado = newValue;
                 if(userSelecionado != null){
-                    // inputClientId.setText(userSelecionado.getid());
+                    inputClientId.setText(userSelecionado.getClientId());
                     inputName.setText(userSelecionado.getUsername());
                     inputCpf.setText(userSelecionado.getCpf());
                     inputTelefone.setText(userSelecionado.getPhone());
@@ -148,7 +148,15 @@ public class FrontController implements Initializable {
     }
 
     public void addCliente(){
+        Client newClient = new Client();
 
+        newClient.setid(inputClientId.getText());
+        newClient.setUsername(inputName.getText());
+        newClient.setCpf(inputCpf.getText());
+        newClient.setPhone(inputTelefone.getText());
+        usersModel.addClient(newClient);
+        Readers.writeFileClient("Clientes.csv", usersModel);
+        listClientInit();
     }
 
 

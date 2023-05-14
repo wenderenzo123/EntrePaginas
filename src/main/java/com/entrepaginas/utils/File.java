@@ -53,7 +53,7 @@ public class File {
                 case 2:
                     for (T client : arrayList) {
                         gravarArq.println(((Client) client).getClientId() + "," + ((Client) client).getUsername() + ","
-                                + ((Client) client).getCpf() + "," + ((Client) client).getPhone() + ",");
+                                + ((Client) client).getCpf() + "," + ((Client) client).getPhone() + ";");
                     }
                     break;
                 default:

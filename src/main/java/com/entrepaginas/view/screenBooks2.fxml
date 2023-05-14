@@ -70,27 +70,29 @@
                      <children>
                         <Pane fx:id="registerClientContainer" layoutX="14.0" layoutY="46.0" prefHeight="268.0" prefWidth="223.0" style="-fx-background-color: #4D565C; -fx-background-radius: 2;">
                            <children>
-                              <Button fx:id="registerClientButton" layoutX="12.0" layoutY="161.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #3B9244; -fx-text-fill: #fff;" text="Cadastrar" textFill="WHITE">
+                              <Button fx:id="registerClientButton" layoutX="12.0" layoutY="188.0" mnemonicParsing="false" onAction="#addCliente" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #3B9244; -fx-text-fill: #fff;" text="Cadastrar" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="11.0" layoutY="1.0" prefHeight="27.0" prefWidth="41.0" text="Nome:" textFill="WHITE" />
-                              <TextField fx:id="inputName" layoutX="11.0" layoutY="24.0" prefHeight="25.0" prefWidth="204.0" />
-                              <Label layoutX="11.0" layoutY="102.0" prefHeight="27.0" prefWidth="55.0" text="Telefone:" textFill="WHITE" />
-                              <TextField fx:id="inputTelefone" layoutX="11.0" layoutY="125.0" prefHeight="25.0" prefWidth="204.0" />
-                              <Label layoutX="11.0" layoutY="54.0" prefHeight="27.0" prefWidth="41.0" text="CPF:" textFill="WHITE" />
-                              <TextField fx:id="inputCpf" layoutX="11.0" layoutY="77.0" prefHeight="25.0" prefWidth="202.0" />
+                              <Label layoutX="11.0" layoutY="39.0" prefHeight="27.0" prefWidth="41.0" text="Nome:" textFill="WHITE" />
+                              <TextField fx:id="inputName" layoutX="11.0" layoutY="62.0" prefHeight="25.0" prefWidth="204.0" />
+                              <Label layoutX="11.0" layoutY="132.0" prefHeight="27.0" prefWidth="55.0" text="Telefone:" textFill="WHITE" />
+                              <TextField fx:id="inputTelefone" layoutX="11.0" layoutY="155.0" prefHeight="25.0" prefWidth="204.0" />
+                              <Label layoutX="11.0" layoutY="84.0" prefHeight="27.0" prefWidth="41.0" text="CPF:" textFill="WHITE" />
+                              <TextField fx:id="inputCpf" layoutX="11.0" layoutY="107.0" prefHeight="25.0" prefWidth="202.0" />
                               <Button fx:id="registerClientButton1" layoutX="73.0" layoutY="224.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff0000; -fx-text-fill: #fff;" text="Deletar" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="registerClientButton2" layoutX="135.0" layoutY="161.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #4388C8; -fx-text-fill: #fff;" text="Editar">
+                              <Button fx:id="registerClientButton2" layoutX="135.0" layoutY="189.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #4388C8; -fx-text-fill: #fff;" text="Editar">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
+                              <Label layoutX="11.0" layoutY="-4.0" prefHeight="27.0" prefWidth="41.0" text="Id:" textFill="WHITE" />
+                              <TextField fx:id="inputClientId" layoutX="11.0" layoutY="19.0" prefHeight="25.0" prefWidth="35.0" />
                            </children>
                         </Pane>
                         <TableView fx:id="users" layoutX="249.0" layoutY="46.0" prefHeight="338.0" prefWidth="498.0" style="-fx-background-color: #4D565C;">
