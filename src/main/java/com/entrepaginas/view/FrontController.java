@@ -208,6 +208,7 @@ public class FrontController implements Initializable {
         Book newBook = new Book();
 
         newBook.setAuthor(inputAuthor.getText());
+        newBook.setQtd(Integer.parseInt(inputQuantidade.getText()));
         newBook.setIsbn(inputIsbn.getText());
         newBook.setTitle(inputTitle.getText());
 
