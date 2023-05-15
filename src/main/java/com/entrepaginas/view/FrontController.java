@@ -201,6 +201,7 @@ public class FrontController implements Initializable {
         library.removeBook(livroSelecionado.getIsbn());
         Readers.writeFileBook("livros.csv", library);
         listBookInit();
+        listBookAluguelInit();
     }
 
     public void addBook() {
@@ -213,6 +214,7 @@ public class FrontController implements Initializable {
         library.addBook(newBook);
         Readers.writeFileBook("livros.csv", library);
         listBookInit();
+        listBookAluguelInit();
     }
 
     public void editBook() {
@@ -224,6 +226,7 @@ public class FrontController implements Initializable {
         library.updateBook(livroSelecionado.getIsbn(), tempBook);
         Readers.writeFileBook("livros.csv", library);
         listBookInit();
+        listBookAluguelInit();
     }
 
     public void listClientInit() {
@@ -246,6 +249,7 @@ public class FrontController implements Initializable {
         usersModel.addClient(newClient);
         Readers.writeFileClient("Clientes.csv", usersModel);
         listClientInit();
+        listClientAluguelInit();
     }
 
     public void editCliente() {
@@ -259,12 +263,14 @@ public class FrontController implements Initializable {
         usersModel.updateClient(inputClientId.getText(), newClient);
         Readers.writeFileClient("Clientes.csv", usersModel);
         listClientInit();
+        listClientAluguelInit();
     }
 
     public void removeCliente() {
         usersModel.removeClient(inputClientId.getText());
         Readers.writeFileClient("Clientes.csv", usersModel);
         listClientInit();
+        listClientAluguelInit();
     }
 
     public void listBookAluguelInit() {
@@ -285,7 +291,7 @@ public class FrontController implements Initializable {
     }
 
     public void alugarLivro() {
-        System.out.println(livroAluguelSelecionado.getIsbn()+ " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
         library.borrowBook(livroAluguelSelecionado.getIsbn());
         usersModel.borrowBook(clientAluguelSelecionado.getClientId(), livroAluguelSelecionado.getIsbn(), library);
         Rent newRent = new Rent((clientAluguelSelecionado.getClientId() + livroAluguelSelecionado.getIsbn()),
