@@ -306,8 +306,12 @@ public class FrontController implements Initializable {
 
     public void devolverLivro() {
         rentModel.removeRent(rentSelecionado.getRentId());
+        library.returnBook(rentSelecionado.getIsbn());
 
         Readers.writeFileRent("alugueis.csv", rentModel);
+        Readers.writeFileBook("livros.csv", library);
+        listAlugadoInit();
+        listBookAluguelInit();
         listAlugadoInit();
     }
 
